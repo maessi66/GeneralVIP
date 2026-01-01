@@ -1,27 +1,23 @@
 [app]
-title = GeneralVIP
+title = General VIP
 package.name = generalvip
 package.domain = org.general.vip
 
 source.dir = .
-source.include_exts = py,kv,png,jpg,ttf
+source.include_exts = py
 
 version = 1.0
 
 requirements = python3,kivy
 
 orientation = portrait
-fullscreen = 0
-
-android.permissions = INTERNET,ACCESS_NETWORK_STATE,READ_SMS,SEND_SMS
+fullscreen = 1
 
 android.api = 33
 android.minapi = 21
-android.ndk = 25b
 
-android.accept_sdk_license = True
-android.archs = arm64-v8a,armeabi-v7a
+android.permissions = INTERNET,ACCESS_NETWORK_STATE,READ_SMS,SEND_SMS
 
-[buildozer]
+android.arch = arm64-v8a
+
 log_level = 2
-warn_on_root = 0
