@@ -1,61 +1,67 @@
 # -*- coding: utf-8 -*-
-# General VIP - Version 1
-# تطبيق تجريبي للتأكد أن Kivy شغال
-
 from kivy.app import App
-from kivy.uix.tabbedpanel import TabbedPanel
-from kivy.uix.label import Label
-from kivy.uix.boxlayout import BoxLayout
+from kivy.lang import Builder
+from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.core.window import Window
 
-# ضبط حجم افتراضي (مفيد للاختبار)
 Window.clearcolor = (0.08, 0.08, 0.1, 1)
 
-class MainTabs(TabbedPanel):
-    def __init__(self, **kwargs):
-        super().__init__(**kwargs)
+KV = '''
+ScreenManager:
+    LoginScreen:
+    HomeScreen:
 
-        self.do_default_tab = False
-        self.tab_pos =  top_mid 
-        self.background_color = (0.1, 0.1, 0.12, 1)
+<LoginScreen>:
+    name: "login"
+    BoxLayout:
+        orientation: "vertical"
+        padding: 40
+        spacing: 20
 
-        # التبويب 1
-        self.add_widget(self.make_tab("الرئيسية", "🔥 General VIP شغال بنجاح 🔥"))
+        Label:
+            text: "General VIP"
+            font_size: "30sp"
+            size_hint_y: None
+            height: 80
 
-        # التبويب 2
-        self.add_widget(self.make_tab("الشبكة", "📶 Network Monitor"))
+        TextInput:
+            hint_text: "البريد الإلكتروني"
+            multiline: False
 
-        # التبويب 3
-        self.add_widget(self.make_tab("الخدمات", "⚙️ USSD / SMS / Mode"))
+        TextInput:
+            hint_text: "كلمة المرور"
+            password: True
+            multiline: False
 
-        # التبويب 4
-        self.add_widget(self.make_tab("الإعدادات", "🛠️ Settings"))
+        TextInput:
+            hint_text: "رقم الهاتف"
+            multiline: False
+            input_filter: "int"
 
-    def make_tab(self, title, text):
-        from kivy.uix.tabbedpanel import TabbedPanelItem
+        Button:
+            text: "تسجيل الدخول"
+            size_hint_y: None
+            height: 55
+            background_color: (0.2, 0.5, 0.9, 1)
+            on_press: app.root.current = "home"
 
-        tab = TabbedPanelItem(text=title)
-        box = BoxLayout(orientation= vertical , padding=20)
+<HomeScreen>:
+    name: "home"
+    BoxLayout:
+        Label:
+            text: "🎉 تم الدخول بنجاح"
+            font_size: "24sp"
+'''
 
-        label = Label(
-            text=text,
-            font_size=20,
-            halign="center",
-            valign="middle"
-        )
-        label.bind(size=label.setter( text_size ))
+class LoginScreen(Screen):
+    pass
 
-        box.add_widget(label)
-        tab.add_widget(box)
-        return tab
-
+class HomeScreen(Screen):
+    pass
 
 class GeneralVIPApp(App):
     def build(self):
-        self.title = "General VIP"
-        return MainTabs()
-
+        return Builder.load_string(KV)
 
 if __name__ == "__main__":
     GeneralVIPApp().run()
-        
