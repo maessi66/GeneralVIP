@@ -3,6 +3,8 @@ title = General VIP
 package.name = generalvip
 package.domain = com.sid
 
+version = 1.0
+
 source.dir = .
 source.include_exts = py
 
