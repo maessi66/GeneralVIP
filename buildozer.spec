@@ -10,8 +10,11 @@ source.include_exts = py
 
 requirements = python3,kivy
 
+
+# Android API
 android.api = 33
 android.minapi = 21
-android.ndk = 25b
 
-android.permissions = INTERNET,READ_SMS
+# ⬇⬇⬇ أهم سطرين ⬇⬇⬇
+android.sdk_build_tools = 33.0.2
+android.ndk = 25b
