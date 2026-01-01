@@ -1,12 +1,15 @@
 [app]
 title = General VIP
 package.name = generalvip
-package.domain = com.sayed
+package.domain = com.sid
+
 source.dir = .
 source.include_exts = py
-version = 1.0
+
 requirements = python3,kivy
+
+android.api = 33
 android.minapi = 21
-android.permissions = INTERNET
-orientation = portrait
-fullscreen = 1
+android.ndk = 25b
+
+android.permissions = INTERNET,READ_SMS
